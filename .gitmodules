@@ -1,0 +1,3 @@
+[submodule "Assets/MetaCombatSystem"]
+	path = Assets/MetaCombatSystem
+	url = https://github.com/Chaussurre/MetaCombatSystem.git
