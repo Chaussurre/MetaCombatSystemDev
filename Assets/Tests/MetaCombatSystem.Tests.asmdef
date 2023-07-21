@@ -1,0 +1,20 @@
+{
+    "name": "MetaCombatSystem.Tests",
+    "rootNamespace": "MetaCombatSystem.Tests",
+    "references": [
+        "GUID:98165ee7316a5f844982654214ac81ee",
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:9dba82578a6ed1942bbca5718da3b9cf"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
