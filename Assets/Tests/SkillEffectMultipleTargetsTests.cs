@@ -8,8 +8,8 @@ namespace MetaCombatSystem.Skills.Tests
     {
         Skill skill;
         MockSkillEffectMultipleTargets skillEffect;
-        SkillTarget skillTarget1;
-        SkillTarget skillTarget2;
+        CombatTarget skillTarget1;
+        CombatTarget skillTarget2;
 
         [SetUp]
         public void SetUp()
@@ -22,10 +22,10 @@ namespace MetaCombatSystem.Skills.Tests
 
             skillEffect = new GameObject("skill effect").AddComponent<MockSkillEffectMultipleTargets>();
             skillEffect.FirstAndLastTargets = new(0, 2);
-            skill.Effects = new() { skillEffect };
+            skill.Components = new() { skillEffect };
 
-            skillTarget1 = new GameObject("target 1").AddComponent<SkillTarget>();
-            skillTarget2 = new GameObject("target 2").AddComponent<SkillTarget>();
+            skillTarget1 = new GameObject("target 1").AddComponent<CombatTarget>();
+            skillTarget2 = new GameObject("target 2").AddComponent<CombatTarget>();
         }
 
         [TearDown]
@@ -67,7 +67,7 @@ namespace MetaCombatSystem.Skills.Tests
         private class MockSkillEffectMultipleTargets : SkillEffectMultipleTargets
         {
             public bool TargetAreSame;
-            public SkillTarget LastTarget;
+            public CombatTarget LastTarget;
 
             public override void SetUpEffect()
             {
@@ -79,7 +79,7 @@ namespace MetaCombatSystem.Skills.Tests
                 return 2;
             }
 
-            protected override void EffectTrigger(SkillTarget target, int i)
+            protected override void EffectTrigger(CombatTarget target, int i)
             {
                 if (i == 0)
                     LastTarget = target;

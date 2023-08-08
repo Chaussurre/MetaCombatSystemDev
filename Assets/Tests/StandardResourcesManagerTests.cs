@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-using DataModificationBuffer = FeatherForge.DataWatcher<MetaCombatSystem.ResourceManagement.StandardResourcesManager.ResourceModification>.DataWatcherBuffer;
+using DataModificationBuffer = FeatherForge.DataWatcher<MetaCombatSystem.ResourceManagement.ResourcesManager.ResourceModification>.DataWatcherBuffer;
 
 namespace MetaCombatSystem.ResourceManagement.Tests
 {
     public class StandardResourcesManagerTests
     {
-        private StandardResourcesManager manager;
-        private StandardResourcesManager.ResourceValue ResourceValue;
+        private ResourcesManager manager;
+        private ResourcesManager.ResourceValue ResourceValue;
 
         [SetUp]
         public void SetUp()
         {
-            manager = new GameObject().AddComponent<StandardResourcesManager>();
+            manager = new GameObject().AddComponent<ResourcesManager>();
             ResourceValue = new()
             {
                 Resource = ScriptableObject.CreateInstance<Resource>(),
@@ -25,7 +25,7 @@ namespace MetaCombatSystem.ResourceManagement.Tests
                 },
                 DataWatcher = new(),
             };
-            manager.Resources = new List<StandardResourcesManager.ResourceValue> { ResourceValue };
+            manager.Resources = new List<ResourcesManager.ResourceValue> { ResourceValue };
         }
 
         [Test]

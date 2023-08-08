@@ -9,8 +9,8 @@ namespace MetaCombatSystem.Skills.Tests
         Skill skill;
         MockSkillEffectMonoTarget skillEffect;
         MockSkillEffectMonoTargetNoValidTarget noValidTargetsSkillEffect;
-        SkillTarget skillTarget1;
-        SkillTarget skillTarget2;
+        CombatTarget skillTarget1;
+        CombatTarget skillTarget2;
 
         [SetUp]
         public void SetUp()
@@ -23,13 +23,13 @@ namespace MetaCombatSystem.Skills.Tests
 
             skillEffect = new GameObject("skill effect").AddComponent<MockSkillEffectMonoTarget>();
             skillEffect.FirstAndLastTargets = new(0, 1);
-            skill.Effects = new() { skillEffect };
+            skill.Components = new() { skillEffect };
             
             noValidTargetsSkillEffect = new GameObject("no valid Targers").AddComponent<MockSkillEffectMonoTargetNoValidTarget>();
             noValidTargetsSkillEffect.FirstAndLastTargets = new(0, 1);
 
-            skillTarget1 = new GameObject("target 1").AddComponent<SkillTarget>();
-            skillTarget2 = new GameObject("target 2").AddComponent<SkillTarget>();
+            skillTarget1 = new GameObject("target 1").AddComponent<CombatTarget>();
+            skillTarget2 = new GameObject("target 2").AddComponent<CombatTarget>();
         }
 
         [TearDown]
@@ -84,7 +84,7 @@ namespace MetaCombatSystem.Skills.Tests
         [Test]
         public void SkillInvalidTargets()
         {
-            skill.Effects.Add(noValidTargetsSkillEffect);
+            skill.Components.Add(noValidTargetsSkillEffect);
 
             skill.AddTarget(skillTarget1);
             skill.AddTarget(skillTarget2);
@@ -96,7 +96,7 @@ namespace MetaCombatSystem.Skills.Tests
         private class MockSkillEffectMonoTarget : SkillEffectMonoTarget
         {
             public int TriggerCount = 0;
-            public SkillTarget LastTriggeredTarget;
+            public CombatTarget LastTriggeredTarget;
 
             public override void SetUpEffect()
             {
@@ -104,7 +104,7 @@ namespace MetaCombatSystem.Skills.Tests
                 LastTriggeredTarget = null;
             }
 
-            public override void EffectTrigger(SkillTarget target)
+            public override void EffectTrigger(CombatTarget target)
             {
                 TriggerCount++;
                 LastTriggeredTarget = target;
@@ -115,12 +115,12 @@ namespace MetaCombatSystem.Skills.Tests
         {
             public bool called = false;
 
-            public override void EffectTrigger(SkillTarget target)
+            public override void EffectTrigger(CombatTarget target)
             {
                 called = true;
             }
 
-            public override bool IsTargetValid(SkillTarget target)
+            public override bool IsTargetValid(CombatTarget target)
             {
                 return false;
             }
